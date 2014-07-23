@@ -9,11 +9,13 @@ gZsum n | (n `mod` 2 == 0) = n + gZsum (n-1)
 gZsumGauss :: Integer -> Integer
 gZsumGauss n = let m = n`div`2 in m*(m+1)
 
+
 --Aufgabe 2
 arrow :: Int -> Int -> Int
 arrow k n = aow k n k
             where aow ks 0 k = ks
                   aow ks n k = aow (ks^k) (n-1) k
+
 
 --Aufgabe 3
 dec2bin :: Int -> [Int]
@@ -26,6 +28,7 @@ summ (x:xs) = x + sum xs
 
 binsumm :: Int -> Int
 binsumm n = summ (dec2bin n)
+
 
 --Aufgabe 4
 int :: Char -> Int
@@ -54,6 +57,7 @@ hexChar n | n<10    = char n
 oct2hex :: String -> String
 oct2hex s = dec2hex (oct2dec s)
 
+
 --Aufgabe 5
 sumDigits :: Int -> Int
 sumDigits n | (length (dec2arr n) == 1) = n
@@ -67,12 +71,14 @@ dec2arr :: Int -> [Int]
 dec2arr n | n<10      = [n]
           | otherwise = dec2arr (n`div`10) ++ [n`mod`10]
 
+
 --Aufgabe 6
 multLists :: [Int] -> [Int] -> [Int]
 multLists [] []         = []
 multLists [] (y:ys)     = error "non matching list lengths"
 multLists (x:xs) []     = error "non matching list lengths"
 multLists (x:xs) (y:ys) = (x*y) : (multLists xs ys)
+
 
 --Aufgabe 7
 --not quite finished
@@ -95,14 +101,17 @@ mathParenthesis '[' ']' = True
 mathParenthesis '<' '>' = True
 mathParenthesis  _   _  = False
 
+
 --Aufgabe 8
---not quite finished
 flatten :: [[Int]] -> [Int]
 flatten []       = []
-flatten (xs:xss) | xs == []  = []
-                 | otherwise = let (y:ys) = xs in y : (flatten (ys:xss))
+flatten (xs:xss) = xs ++ (flatten xss)
 
 
-
+--Aufgabe 9
+makeSet :: [Int] -> [Int]
+makeSet []     = []
+makeSet (x:xs) | (elem x xs) = makeSet xs
+               | otherwise   = x : (makeSet xs)
 
 
