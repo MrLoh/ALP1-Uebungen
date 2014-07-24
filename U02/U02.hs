@@ -1,9 +1,17 @@
 import Data.Char
 
+int :: Char -> Int
+int c = fromEnum c - 48
+
+char :: Int -> Char
+char i = toEnum (i+48)
+
+
 --Aufgabe 1
 gZsum :: Integer -> Integer
 gZsum 0 = 0
-gZsum n | (n `mod` 2 == 0) = n + gZsum (n-1)
+gZsum n | n < 0            = error "not defined for negative Integers"
+        | (n `mod` 2 == 0) = n + gZsum (n-1)
         | otherwise        = gZsum (n-1)
 
 gZsumGauss :: Integer -> Integer
@@ -11,10 +19,9 @@ gZsumGauss n = let m = n`div`2 in m*(m+1)
 
 
 --Aufgabe 2
-arrow :: Int -> Int -> Int
-arrow k n = aow k n k
-            where aow ks 0 k = ks
-                  aow ks n k = aow (ks^k) (n-1) k
+arrow :: Integer -> Integer -> Integer
+arrow k 1 = k
+arrow k n = k^(arrow k (n-1))
 
 
 --Aufgabe 3
@@ -29,14 +36,14 @@ summ (x:xs) = x + sum xs
 binsumm :: Int -> Int
 binsumm n = summ (dec2bin n)
 
+-- alternativ direct queerSum funktion, für beliebige Basis b
+querSum :: Int -> Int -> Int
+querSum n b | n < 0 = - querSum (-n) b
+            | n < b = n
+            | otherwise = (querSum (n`div`b) b) + (n`mod`b)
+
 
 --Aufgabe 4
-int :: Char -> Int
-int c = fromEnum c - 48
-
-char :: Int -> Char
-char i = toEnum (i+48)
-
 oct2dec :: String -> Int
 oct2dec ""     = 0
 oct2dec (o:os) = int o * 8^(length os) + oct2dec os
@@ -55,7 +62,25 @@ hexChar n | n<10    = char n
           | n == 15 = 'F'
 
 oct2hex :: String -> String
-oct2hex s = dec2hex (oct2dec s)
+oct2hex = dec2hex.oct2dec
+
+-- alternativ über Binärzahlen
+oct2bin :: String -> String
+oct2bin ""     = ""
+oct2bin (x:xs) = [ [a,b,c] | a <- bits, b <- bits, c <- bits ]!!(int x) ++ (oct2bin xs)
+                 where bits = "01"
+                 -- generiert Liste ["000","001","010","011","100","101","110","111"]
+
+bin2hex :: String -> String
+bin2hex ""               = ""
+bin2hex (b3:b2:b1:b0:xs) = ["0123456789ABCDEF"!!i] ++ bin2hex xs
+                           where i = int b3 * 2^3 + int b2 * 2^2 + int b1 * 2 + int b0
+
+padding :: String -> String
+padding xs = [ '0' | x <- [1..( (length xs)`mod`4)] ]
+
+oct2hex2 :: String -> String
+oct2hex2 = bin2hex.padding.oct2bin
 
 
 --Aufgabe 5
@@ -82,24 +107,20 @@ multLists (x:xs) (y:ys) = (x*y) : (multLists xs ys)
 
 --Aufgabe 7
 --not quite finished
-balanced:: [Char] -> Bool
+balanced :: [Char] -> Bool
 balanced text = bal [] text
                 where
-                    bal:: [Char] -> [Char] -> Bool
-                    bal [] []      = True
-                    bal sta (c:cs) | elem c "({[<" = bal (c:sta) cs
-                                   | elem c ")]}>" = if (mathParenthesis (head sta) c)
-                                                     then bal (tail sta) cs
-                                                     else False
-                                   | otherwise     = bal sta cs
-                    bal _ _        = False
-
-mathParenthesis :: Char -> Char -> Bool
-mathParenthesis '(' ')' = True
-mathParenthesis '{' '}' = True
-mathParenthesis '[' ']' = True
-mathParenthesis '<' '>' = True
-mathParenthesis  _   _  = False
+                  bal:: [Char] -> [Char] -> Bool
+                  bal []   []        = True
+                  bal sta ('(':cs)   = bal (')':sta) cs
+                  bal sta ('[':cs)   = bal (']':sta) cs
+                  bal sta ('{':cs)   = bal ('}':sta) cs
+                  bal (k:sta) (c:cs) | notElem c ")}]" = bal (k:sta) cs
+                                     | k == c       = bal sta cs
+                                     | otherwise    = False
+                  bal sta (c:cs)     | elem c ")}]" = False
+                                     | otherwise    = bal sta cs
+                  bal (k:sta) ""     = False
 
 
 --Aufgabe 8

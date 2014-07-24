@@ -4,9 +4,11 @@ import Data.Char
 teil :: Integer -> Integer -> Bool
 teil a b = a `mod` b == 0
 
+
 --Aufgabe 2
 ungerade :: Integer -> Bool
 ungerade n = rem n 2 /= 0
+
 
 --Aufgabe 3
 pythTripel :: (Int,Int,Int) -> Bool
@@ -17,6 +19,7 @@ pythTripel (a,b,c) = let sqa = a*a
 
 --pythTripel :: Int -> Int -> Int -> Bool
 --pythTripel a b c = a^2 + b^2 == c^2 || a^2 + c^2 == b^2 || b^2 + c^2 == a^2
+
 
 --Aufgabe 4
 mehrfaches :: Int -> Int -> Int -> Bool
@@ -32,9 +35,11 @@ myToLower c | isUpper c = toEnum(fromEnum c + 32)::Char
             where
                 isUpper c = c >= 'A' && c <= 'Z'
 
+
 --Aufgabe 6
 isKlammer :: Char -> Bool
 isKlammer c = elem c "(){}[]<>"
+
 
 --Aufgabe 7
 weekday :: Int -> Int -> Int -> String
@@ -52,11 +57,13 @@ weekday d m y = case (name) of
                     m0 = m+12*(14-m)`div`12-2
                     name = (d+x+(31*m0)`div`12) `mod` 7
 
+
 --Aufgabe 8
 polygonArea :: Double -> Double -> Double -> Double
 polygonArea n s a = n*s*a/2
              where
                 a = s/2*tan(pi/n)
+
 
 --Aufgabe 9
 type Point = (Double, Double)
