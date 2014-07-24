@@ -110,17 +110,17 @@ multLists (x:xs) (y:ys) = (x*y) : (multLists xs ys)
 balanced :: [Char] -> Bool
 balanced text = bal [] text
                 where
-                  bal:: [Char] -> [Char] -> Bool
-                  bal []   []        = True
-                  bal sta ('(':cs)   = bal (')':sta) cs
-                  bal sta ('[':cs)   = bal (']':sta) cs
-                  bal sta ('{':cs)   = bal ('}':sta) cs
-                  bal (k:sta) (c:cs) | notElem c ")}]" = bal (k:sta) cs
-                                     | k == c       = bal sta cs
-                                     | otherwise    = False
-                  bal sta (c:cs)     | elem c ")}]" = False
-                                     | otherwise    = bal sta cs
-                  bal (k:sta) ""     = False
+                bal:: [Char] -> [Char] -> Bool
+                bal []   []        = True
+                bal sta ('(':cs)   = bal (')':sta) cs
+                bal sta ('[':cs)   = bal (']':sta) cs
+                bal sta ('{':cs)   = bal ('}':sta) cs
+                bal (k:sta) (c:cs) | notElem c ")}]" = bal (k:sta) cs
+                                   | k == c       = bal sta cs
+                                   | otherwise    = False
+                bal sta (c:cs)     | elem c ")}]" = False
+                                   | otherwise    = bal sta cs
+                bal (k:sta) ""     = False
 
 
 --Aufgabe 8
