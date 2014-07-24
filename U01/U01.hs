@@ -72,27 +72,24 @@ area :: Rectangle -> Double
 area ((p1x,p1y),(p2x,p2y)) = abs(p1x-p2x)*abs(p1y-p2y)
 
 inside :: Point -> Rectangle -> Bool
-inside (x,y) ((p1x,p1y),(p2x,p2y)) = let ox = max(p1x,p2x)
-                                         ux = min(p1x,p2x)
-                                         oy = max(p1y,p2y)
-                                         uy = min(p1y,p2y)
+inside (x,y) ((p1x,p1y),(p2x,p2y)) = let ox = max p1x p2x
+                                         ux = min p1x p2x
+                                         oy = max p1y p2y
+                                         uy = min p1y p2y
                                      in (ox >= x) && (ux <= x) && (oy >= y) && (uy <= y)
 
 overlaps :: Rectangle -> Rectangle -> Bool
-overlaps ((q1x,q1y),(q2x,q2y)) ((p1x,p1y),(p2x,p2y)) = let pox = max(p1x,p2x)
-                                                           pux = min(p1x,p2x)
-                                                           poy = max(p1y,p2y)
-                                                           puy = min(p1y,p2y)
-                                                           qox = max(q1x,q2x)
-                                                           qux = min(q1x,q2x)
-                                                           qoy = max(q1y,q2y)
-                                                           quy = min(q1y,q2y)
+overlaps ((q1x,q1y),(q2x,q2y)) ((p1x,p1y),(p2x,p2y)) = let pox = max p1x p2x
+                                                           pux = min p1x p2x
+                                                           poy = max p1y p2y
+                                                           puy = min p1y p2y
+                                                           qox = max q1x q2x
+                                                           qux = min q1x q2x
+                                                           qoy = max q1y q2y
+                                                           quy = min q1y q2y
                                                        in (qux >= pox) || (pux >= qox) || (quy >= poy) || (puy >= qoy)
 contains :: Rectangle -> Rectangle -> Bool
-contains (q1,q2) (p1,p2) = inside p1 (q1,q2) && inside p1 (q1,q2) || inside q1 (p1,p2) && inside q1 (p1,p2)
-
---overlaps :: Rectangle -> Rectangle -> Bool
---overlaps ((r1p1x,r1p1y),(r1p2x,r1p2y)) ((r2p1x,r2p1y),(r2p2x,r2p2y)) =
+contains (q1,q2) (p1,p2) = inside p1 (q1,q2) && inside p2 (q1,q2) || inside q1 (p1,p2) && inside q2 (p1,p2)
 
 
 
