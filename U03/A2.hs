@@ -16,6 +16,11 @@ querSumPrimes n | n<2                              = []
                 | (prime n) && (prime (querSum n)) = (querSumPrimes (n-1)) ++ [n]
                 | otherwise                        = querSumPrimes (n-1)
 
+querSumPrimes2 :: Int -> [Int]
+querSumPrimes2 n = [ x | x <- primes ,  ]
+                   where
+                   primes = [ a | a <- [2..n] ]
+
+
 main = do
  print( querSumPrimes 100 )
- print( querSum 100 )

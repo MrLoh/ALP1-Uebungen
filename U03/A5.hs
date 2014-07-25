@@ -1,5 +1,6 @@
 type Bits = [Int]
 --we will further assume, that length Bits == 8
+
 decTo8bit :: Int -> Bits
 decTo8bit n = fill (dec2bin n)
               where
@@ -18,32 +19,54 @@ bin2dec b = b2d (reverse b)
             b2d (x:xs) = 2*(b2d xs) + x
 
 addition :: Bits -> Bits -> Bits
-addition as bs = add (reverse as) (reverse bs) [] 0
+addition as bs | lnas >= lnbs = add (reverse as) (reverse (bs`padleft`(lnas-lnbs))) [] 0
+               | otherwise    = add (reverse (as`padleft`(lnbs-lnas))) (reverse bs) [] 0
                  where
                  add :: Bits -> Bits -> Bits -> Int -> Bits
-                 add []     bs     out ut = out
+                 add []     []     out ut = out
                  add (a:as) (b:bs) out ut | (a+b+ut) == 3 = add as bs (1:out) 1
                                           | (a+b+ut) == 2 = add as bs (0:out) 1
                                           | otherwise     = add as bs ((a+b+ut):out) 0
+                 lnas = length as
+                 lnbs = length bs
 
 negative :: Bits -> Bits
 negative bs = (collapse bs) `addition` [0,0,0,0,0,0,0,1]
 
 collapse :: Bits -> Bits
 collapse []     = []
-collapse (b:bs) | b == 0 = 1:(negative bs)
-                | b == 1 = 0:(negative bs)
+collapse (b:bs) | (b == 0) = 1:(collapse bs)
+                | (b == 1) = 0:(collapse bs)
 
 subtrakt :: Bits -> Bits -> Bits
 subtrakt a b = addition a (negative b)
 
---produkt :: Bits -> Bits -> [Int]
+shiftleft :: Bits -> Int -> Bits
+shiftleft bs 0 = bs
+shiftleft bs n = shiftleft (bs ++ [0]) (n-1)
+
+padleft :: Bits -> Int -> Bits
+padleft bs 0 = bs
+padleft bs n = padleft ([0] ++ bs) (n-1)
+
+produkt :: Bits -> Bits -> [Int]
+produkt as []     = as
+produkt as (b:bs) | (b == 1) = (as`shiftleft`(length bs))`addition`(produkt as bs)
+                  | (b == 0) = (decTo8bit 0)`addition`(produkt as bs)
 
 main = do
  print( n )
  print( collapse n )
  print( negative n )
  print( bin2dec (negative (negative n)) )
- where n = decTo8bit 10
+ print( bin2dec (n`addition`m) )
+ print( bin2dec (n`subtrakt`m) )
+ print( n`shiftleft`2 )
+ print( bin2dec (n`produkt`m) )
+
+ putStrLn ""
+ where
+  n = decTo8bit 10
+  m = decTo8bit 5
 
 

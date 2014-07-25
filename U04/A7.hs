@@ -5,26 +5,46 @@ paintPicture f size = paint size (map f [(x,y,size) | x <- [1..size], y <- [1..s
                         paint 0 (c:cs)  = '\n' : (paint size (c:cs))
                         paint n (c:cs)  = c: (paint (n-1) cs)
 
-diag (x,y,size) = if (x==y) then 'a' else ' '
 
-quad (x, y, size) = if x>s && x<3*s && y>s && y<3*s
-                    then ' '
-                    else '+'
+square :: (Int, Int, Int) -> Char
+square (x,y,s) = if y>x
+                    then if x>(-y)+s
+                         then 'B'
+                         else '.'
+                    else if (y<n || y>2*n && y<m) && (x>m) || (x>m+2*n || x>m && x<m+n ) && y<m
+                         then '*'
+                         else ' '
+                         where
+                         m = s`div`2
+                         n = s`div`6
+
+chessboard :: (Int, Int, Int) -> Char
+chessboard (x,y,s) = if (y-1)`mod`8<4 && (x-1)`mod`8<4 || (y-1)`mod`8>=4 && (x-1)`mod`8>=4
+                     then '█'
+                     else ' '
+
+
+
+easteregg :: (Int, Int, Int) -> Char
+easteregg (x,y,s) = if 1.0 > ( ((xd-r)/r)^2 + ((yd-r)/r)^2 )
+                    then if x<m
+                         then if y`mod`6==0 && x`mod`3==0
+                              then '@'
+                              else '_'
+                         else if y`mod`8<4
+                              then '█'
+                              else '='
+                    else if x>m+m`div`2
+                         then '|'
+                         else ' '
                     where
-                          s = div size 4
-
-gitter (x,y,size) = if k || p  then '0' else ' '
-                    where
-                         k = (mod x space)==0
-                         p = (mod y space)==0
-                         space = div size 5
-
-flag (x,y,size) = if (x < (div size 3)) then 'M' else if (y < (div size 3)) then '8' else '.'
-
-
+                    m = s`div`2
+                    r = (fromIntegral s)/2.0
+                    xd = fromIntegral x
+                    yd = fromIntegral y
 
 main = do
- putStrLn (paintPicture quad 20)
- putStrLn (paintPicture gitter 20)
- putStrLn (paintPicture flag 20)
- putStrLn (paintPicture diag 20)
+ putStrLn (paintPicture square 30)
+ putStrLn (paintPicture chessboard 40)
+ putStrLn (paintPicture easteregg 50)
+
