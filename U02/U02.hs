@@ -7,7 +7,7 @@ char :: Int -> Char
 char i = toEnum (i+48)
 
 
---Aufgabe 1
+--AUFGABE 1
 gZsum :: Integer -> Integer
 gZsum 0 = 0
 gZsum n | n < 0            = error "not defined for negative Integers"
@@ -18,13 +18,13 @@ gZsumGauss :: Integer -> Integer
 gZsumGauss n = let m = n`div`2 in m*(m+1)
 
 
---Aufgabe 2
+--AUFGABE 2
 arrow :: Integer -> Integer -> Integer
 arrow k 1 = k
 arrow k n = k^(arrow k (n-1))
 
 
---Aufgabe 3
+--AUFGABE 3
 dec2bin :: Int -> [Int]
 dec2bin n | n<2       = [n]
           | otherwise = dec2bin (n`div`2) ++ [n`mod`2]
@@ -43,7 +43,7 @@ querSum n b | n < 0 = - querSum (-n) b
             | otherwise = (querSum (n`div`b) b) + (n`mod`b)
 
 
---Aufgabe 4
+--AUFGABE 4
 oct2dec :: String -> Int
 oct2dec ""     = 0
 oct2dec (o:os) = int o * 8^(length os) + oct2dec os
@@ -83,7 +83,7 @@ oct2hex2 :: String -> String
 oct2hex2 = bin2hex.padding.oct2bin
 
 
---Aufgabe 5
+--AUFGABE 5
 sumDigits :: Int -> Int
 sumDigits n | (length (dec2arr n) == 1) = n
             | otherwise               = sumDigits (sumArr (dec2arr n))
@@ -97,7 +97,7 @@ dec2arr n | n<10      = [n]
           | otherwise = dec2arr (n`div`10) ++ [n`mod`10]
 
 
---Aufgabe 6
+--AUFGABE 6
 multLists :: [Int] -> [Int] -> [Int]
 multLists [] []         = []
 multLists [] (y:ys)     = error "non matching list lengths"
@@ -105,8 +105,7 @@ multLists (x:xs) []     = error "non matching list lengths"
 multLists (x:xs) (y:ys) = (x*y) : (multLists xs ys)
 
 
---Aufgabe 7
---not quite finished
+--AUFGABE 7
 balanced :: [Char] -> Bool
 balanced text = bal [] text
                 where
@@ -123,16 +122,59 @@ balanced text = bal [] text
                 bal (k:sta) ""     = False
 
 
---Aufgabe 8
-flatten :: [[Int]] -> [Int]
+--AUFGABE 8
+flatten :: [[a]] -> [a]
 flatten []       = []
 flatten (xs:xss) = xs ++ (flatten xss)
 
 
---Aufgabe 9
-makeSet :: [Int] -> [Int]
+--AUFGABE 9
+makeSet :: Eq a => [a] -> [a]
 makeSet []     = []
 makeSet (x:xs) | (elem x xs) = makeSet xs
                | otherwise   = x : (makeSet xs)
 
 
+--TESTS
+main = do
+ print "Aufgabe 1"
+ print( gZsum 30 )
+ print( gZsumGauss 30 )
+
+ putStrLn ""
+ print "Aufgabe 2"
+ print( 2`arrow`4 )
+
+ putStrLn ""
+ print "Aufgabe 3"
+ print( binsumm 10 )
+ print( querSum 10 2 )
+
+ putStrLn ""
+ print "Aufgabe 4"
+ print( oct2hex "0770" )
+ print( oct2hex2 "0770" )
+
+ putStrLn ""
+ print "Aufgabe 5"
+ print( sumDigits 452317 )
+
+ putStrLn ""
+ print "Aufgabe 6"
+ print( multLists [2,4,0,1] [0,1,0,2] )
+
+ putStrLn ""
+ print "Aufgabe 7"
+ print( balanced "(a+b)*[x-y]/{(x+1)*5}" )
+ print( balanced "(a+b)*x-y)/{(x+1)*5}" )
+
+ putStrLn ""
+ print "Aufgabe 8"
+ print( flatten [[8,2],[3],[],[4,5,0,1]] )
+
+ putStrLn ""
+ print "Aufgabe 9"
+ print( makeSet [1,2,1,2,2,1,3] )
+ print( makeSet ['h','e','l','l','o'] )
+
+ putStrLn ""

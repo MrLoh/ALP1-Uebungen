@@ -1,16 +1,16 @@
 import Data.Char
 
---Aufgabe 1
+--AUFGABE 1
 teil :: Integer -> Integer -> Bool
 teil a b = a `mod` b == 0
 
 
---Aufgabe 2
+--AUFGABE 2
 ungerade :: Integer -> Bool
 ungerade n = rem n 2 /= 0
 
 
---Aufgabe 3
+--AUFGABE 3
 pythTripel :: (Int,Int,Int) -> Bool
 pythTripel (a,b,c) = let sqa = a*a
                          sqb = b*b
@@ -21,13 +21,13 @@ pythTripel (a,b,c) = let sqa = a*a
 --pythTripel a b c = a^2 + b^2 == c^2 || a^2 + c^2 == b^2 || b^2 + c^2 == a^2
 
 
---Aufgabe 4
+--AUFGABE 4
 mehrfaches :: Int -> Int -> Int -> Bool
 mehrfaches a b c = a*b == c || a*c == b || b*c == a
 --mehrfaches a b c = (teil a b && teil teil a c) || (teil b c && teil b a) || (teil a c && teil c b)
 
 
---Aufgabe 5
+--AUFGABE 5
 myToLower :: Char -> Char
 --toLower c = let n = fromEnum c in if n >= 63 then toEnum (n+32) :: Char else c
 myToLower c | isUpper c = toEnum(fromEnum c + 32)::Char
@@ -36,12 +36,12 @@ myToLower c | isUpper c = toEnum(fromEnum c + 32)::Char
                 isUpper c = c >= 'A' && c <= 'Z'
 
 
---Aufgabe 6
+--AUFGABE 6
 isKlammer :: Char -> Bool
 isKlammer c = elem c "(){}[]<>"
 
 
---Aufgabe 7
+--AUFGABE 7
 weekday :: Int -> Int -> Int -> String
 weekday d m y = case (name) of
                      0 -> "Su"
@@ -58,14 +58,14 @@ weekday d m y = case (name) of
                     name = (d+x+(31*m0)`div`12) `mod` 7
 
 
---Aufgabe 8
+--AUFGABE 8
 polygonArea :: Double -> Double -> Double -> Double
 polygonArea n s a = n*s*a/2
              where
                 a = s/2*tan(pi/n)
 
 
---Aufgabe 9
+--AUFGABE 9
 type Point = (Double, Double)
 type Rectangle = (Point, Point)
 area :: Rectangle -> Double
@@ -92,6 +92,4 @@ contains :: Rectangle -> Rectangle -> Bool
 contains (q1,q2) (p1,p2) = inside p1 (q1,q2) && inside p2 (q1,q2) || inside q1 (p1,p2) && inside q2 (p1,p2)
 
 
-
-
-
+main = putStrLn ""
