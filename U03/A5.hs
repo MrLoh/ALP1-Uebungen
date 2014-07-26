@@ -43,30 +43,37 @@ subtrakt a b = addition a (negative b)
 
 shiftleft :: Bits -> Int -> Bits
 shiftleft bs 0 = bs
-shiftleft bs n = shiftleft (bs ++ [0]) (n-1)
+shiftleft bs n = shiftleft (tail(bs++[0])) (n-1)
 
 padleft :: Bits -> Int -> Bits
 padleft bs 0 = bs
-padleft bs n = padleft ([0] ++ bs) (n-1)
+padleft bs n = padleft (0:bs) (n-1)
 
 produkt :: Bits -> Bits -> [Int]
-produkt as []     = as
-produkt as (b:bs) | (b == 1) = (as`shiftleft`(length bs))`addition`(produkt as bs)
-                  | (b == 0) = (decTo8bit 0)`addition`(produkt as bs)
+produkt as bs = prd (as`padleft`8) (reverse (bs`padleft`8)) 0
+                where
+                prd as [] n    = []
+                prd as (b:bs) n | (b == 1) = (as`shiftleft`n)`addition`(prd as bs (n+1))
+                                | (b == 0) = prd as bs (n+1)
 
 main = do
  print( n )
+ print( m )
+ putStrLn "  +/-"
  print( collapse n )
  print( negative n )
  print( bin2dec (negative (negative n)) )
  print( bin2dec (n`addition`m) )
  print( bin2dec (n`subtrakt`m) )
+ putStrLn "  <</*"
+ print( n )
  print( n`shiftleft`2 )
+ print( n`produkt`m )
  print( bin2dec (n`produkt`m) )
 
  putStrLn ""
  where
   n = decTo8bit 10
-  m = decTo8bit 5
+  m = decTo8bit 4
 
 
