@@ -1,11 +1,10 @@
 import Data.Maybe
 --implementation with Moore's voting algorythm
---majority :: (Eq a) => [a] -> (Maybe a)
-majority :: (Eq a) => [a] -> Bool
-majority [] = False --Nothing
+majority :: (Eq a) => [a] -> (Maybe a)
+majority [] = Nothing
 majority xs = if (length xs)`div`2 < candidateCount
-              then True --candidate
-              else False --Nothing
+              then Just candidate
+              else Nothing
               where
               candidate = findCandidate (tail xs) (head xs) 1
               candidateCount = count xs candidate
