@@ -1,0 +1,27 @@
+# 1)
+(λx.xx) (λabc.cbabc) (λx.fxx) (fx) y 
+(λabc.cbabc) (λabc.cbabc) (λx.fxx) (fx) y 
+(λbc.cb(λabc.cbabc)bc) (λx.fxx) (fx) y 
+(λbc.cb(λauv.vuauv)bc) (λx.fxx) (fx) y 
+(λbc.cb(λv.vcbcv)) (λx.fxx) (fx) y 
+(λc.c(λx.fxx)(λv.vc(λx.fxx)cv)) (fx) y 
+(λc.c(λx.fxx)(λv.vc(fcc)v)) (fx) y 
+(λc.c(f(λv.vc(fcc)v))(λv.vc(fcc)v)) (fx) y 
+(λc.c(f(λv.vc(fcc)v))(λa.ac(fcc)a)) (fx) y 
+(λc.c( f( (λa.ac(fcc)a) ) c (fcc) (λa.ac(fcc)a) ) ) (fx) y 
+(fx)( f( (λa.a(fx)(f(fx)(fx))a) ) c (f(fx)(fx)) (λa.a(fx)(f(fx)(fx))a) ) y 
+(fx) ( f(A) c FX A ) y
+
+FX ≡ (f(fx)(fx))
+A(fx) ≡ (λa.a(fx) FX a)
+
+
+
+# 2)
+id S 2
+(λx.x)((λabc.b(abc))(λfx.f(fx)))
+(λabc.b(abc))(λfx.f(fx))
+λbc.b((λfx.f(fx))bc)
+λbc.b((λx.b(bx))c)
+λbc.b(b(bc))
+λsz.s(s(s(z))) ≡ 3

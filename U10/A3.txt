@@ -1,0 +1,26 @@
+3 + 2 * 2
+3 S (M 2 2)
+3 S ( (λxya.x(ya)) 2 2 )
+3 S ( λa.2(2a) )
+3 S ( λa. (λsz.s(s(z))) ((λsz.s(s(z))) a) )
+3 S ( λa. (λsz.s(s(z))) (λz.a(a(z))) )
+3 S ( λa. (λsz.s(s(z))) (λx.a(a(x))) )
+3 S ( λa.λz. (λx.a(a(x))) ( (λx.a(a(x))) z) )
+3 S ( λaz. (λx.a(a(x))) (a(a(z))) )
+3 S ( λaz.a(a(a(a(z)))) )
+3 S 4
+(λsz.s(s(s(z)))) S 4
+S(S(S(4)))
+S(S( (λwyx.y(wyx)) 4 ))
+S(S( λyx.y(4yx) ))
+S(S( λyx.y(y(y(y(y(x))))) ))
+S(S( λyx.y(y(y(y(y(x))))) ))
+S( (λwyx.y(wyx)) 5 )
+S( (λyx.y(5yx)) )
+S( (λyx.y((λsz.s(s(s(s(s(z))))))yx)) )
+S( (λyx.y(y(y(y(y(y(x))))))) )
+(λwyx.y(wyx)) 6
+(λyx.y(6yx))
+(λyx.y((λsz.s(s(s(s(s(s(z)))))))yx))
+(λyx.y(y(y(y(y(y(y(x))))))))
+7

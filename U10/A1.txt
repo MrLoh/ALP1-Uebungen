@@ -1,0 +1,29 @@
+# 1)
+λ(c.d)a
+Nicht syntaktisch korrekt, da Variablen keine Ausdrücke sein dürfen. 
+
+# 2)
+ λa.λy.λzz
+Nicht syntaktisch korrekt, da kein Ausdruck vorhanden ist, sondern nur Variablen.
+
+# 3)
+ λb.y(zw)b
+Syntaktisch korrekt.
+gebunden: 'b'
+frei: 'y','z','w'
+
+# 4)
+ λ(x.xzx)x.xa
+Nicht syntaktisch korrekt, da Variablen keine Ausdrücke sein dürfen und jeder '.' nicht ohne ein 'λ' vorkommen kann.
+
+# 5)
+ λazy.zxyabc
+Syntaktisch korrekt.
+gebunden: 'a','z','y'
+frei: 'x','b','c'
+
+# 6)
+ λxyz.x(yzw)(λa.abx)
+Syntaktisch korrekt.
+gebunden: 'x','y','z','a'
+frei: 'w','b'
