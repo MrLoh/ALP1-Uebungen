@@ -1,0 +1,23 @@
+Haskell:
+f 0 = 2
+f n = (f(n-1))*2 + 2
+
+f 0 = 2
+f 1 = 2*2+2 = 6
+f 2 = 6*2+2 = 14
+f 3 = 14*2+2 = 30
+
+Tupel:
+[(2,0); (6,2); (14,6); ...]
+
+Lambda
+H ≡ λpt.t (pF) ((MULT 2 (pT)) S 2)
+H kreiert bei Eingabe eines Tupels (a,b) ein Tupel (b,2*a+2)
+
+BLA ≡ (λn.(nH(λt.t02))T )
+BLA führt H n-mal aus, startet mit (0,2) und gibt am Ende das erste Element zurück.
+
+Alternativ: 
+
+λn.YRn
+R ≡ λrn.Zn 0 ( (MULT 2 (r(Pn))) S 2 )

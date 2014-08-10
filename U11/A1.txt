@@ -1,0 +1,46 @@
+∧ T
+(λxy.xyF) T
+λy.TyF
+λy.(λtf.t)y(λtf.f)
+λy.(λf.y)(λtf.f)
+λy.y
+ID
+
+
+∧ F
+(λxy.xyF) F
+λy.FyF
+λy.(λtf.f)y(λtf.f)
+λy.(λf.f)(λtf.f)
+λy.(λtf.f)
+λytf.f
+C(F)
+
+
+∨ T
+(λxy.xTy) T
+λy.TTy
+λy.C(T) y
+λy.T
+C(T)
+
+
+∨ F
+(λxy.xTy) F
+λy.FTy
+λy.ID y
+λy.y
+ID
+
+
+
+Interessant:
+T A
+(λtf.t) A
+(λf.A)
+C(A)
+
+F A
+(λtf.f) A
+λf.f
+I

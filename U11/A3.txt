@@ -1,0 +1,36 @@
+∧ ≡ (λtf.tft)
+
+(λtf.tft) T
+(λtf.tft) (λtf.t)
+(λf.(λtf.t)f(λtf.t))
+(λf.(λtx.t)f(λtf.t))
+(λf.(λx.f)(λtf.t))
+(λf.f)
+ID
+
+(λtf.tft) F
+(λtf.tft) (λtf.f)
+(λf.(λtf.f)f(λtf.f))
+(λf.(λf.f)(λtf.f))
+(λf.(λtf.f))
+(λytf.f)
+C(F)
+
+
+Damit folgt:
+
+(λtf.tft) T T
+ID T
+T
+
+(λtf.tft) T F
+ID F
+F
+
+(λtf.tft) F
+cont(F) F
+F
+
+(λtf.tft) T
+cont(F) F
+F

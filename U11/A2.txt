@@ -1,0 +1,27 @@
+EG ≡ λxy. AND (Z(xPy)) (NOT (Z(yPx)))
+Offensichtlich, da alles was größer gleich aber nich kleiner gleich ist, echt größer sein muss.
+
+Bsp:
+EG 5 4
+(λxy. AND (Z(xPy)) (NOT (Z(yPx)))) 5 4
+AND (Z(5P4)) (NOT (Z(4P5)))
+AND (Z(0)) (NOT (Z(1)))
+AND T (NOT F)
+AND T T
+T
+
+EG 4 4
+(λxy. AND (Z(xPy)) (NOT (Z(yPx)))) 4 4
+AND (Z(4P4)) (NOT (Z(4P4)))
+AND (Z(0)) (NOT (Z(0)))
+AND T (NOT T)
+AND T F
+F
+
+
+ES ≡ λxy. AND (Z(yPx)) (NOT (Z(xPy)))
+Offensichtlich, da alles was kleiner gleich aber nich größer gleich ist, echt größer sein muss.
+
+NE ≡ λxy. AND (NOT (Z(yPx)) ) (NOT (Z(xPy)))
+Offensichtlich, da alles was nicht kleiner gleich und nich größer gleich ist, ungleich sein muss.
+

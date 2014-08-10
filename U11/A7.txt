@@ -1,0 +1,62 @@
+YR ≡ R(YR)
+T A B ≡ A
+F A B ≡ B
+
+Haskell:
+POT i 0 = 1
+POT i n = (*) i (POT i (n-1))
+
+Lambda: 
+POT ≡ λin.YRin
+R ≡ λrin.Zn1(MULT i (r i (Pn) ))
+
+Beispiel:
+POT 22
+(λin.YRin) 22
+YR22
+R(YR)22
+(λrin.Zn1(MULT i (r i (Pn) ))) (YR) 2 2
+Z21(MULT 2 ((YR) 2 (P2) )))
+F1(MULT 2 (YR21)))
+MULT 2 (R(YR)21))
+MULT 2 (λrin.Zn1(MULT i (r i (Pn) )) (YR) 2 1))
+MULT 2 (Z11(MULT 2 (YR 2 (P1) )))
+MULT 2 (F1(MULT 2 (YR20)))
+MULT 2 (MULT 2 (R(YR)20)))
+MULT 2 (MULT 2 (λrin.Zn1(MULT i (r i (Pn) )) (YR) 2 0)))
+MULT 2 (MULT 2 (Z01(MULT 2 (YR 2 (P0) ))))
+MULT 2 (MULT 2 (T1(MULT 2 (YR20))) )
+MULT 2 (MULT 2 1)
+MULT 2 2
+4
+
+
+
+
+
+
+
+
+Beispiel für Sum
+
+SUM ≡ λm.YRm
+R ≡ λrn.Zn0(nS(r(Pn))))
+
+(λn.YRn) 2
+YR2
+S(YR)2
+λrn.Zn0(nS(r(Pn)))) (YS) 2
+Z20(2S(YR(P2)))
+F0(2S(YR1))
+2S(YR1)
+2S(R(YR)1)
+2S (λrn.Zn0(nS(r(Pn)))) (YR) 1)
+2S (Z10(1S(YR(P1))))
+2S (F0(1S(YR0)))
+2S (1S (YR0))
+2S (1S (R(YR)0))
+2S (1S (λrn.Zn0(nS(r(Pn)))) (YR) 0))
+2S (1S (Z00(0S(YR(P0)))))
+2S (1S (T0(0S(YR0)) ))
+2S(1S(0))
+3

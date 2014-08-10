@@ -1,0 +1,5 @@
+H ≡ (λpt.t(pF)((pF)S(pT)))
+H erstellt bei eingabe eines Tupels (a,b) ein neues Tupel (b,a+b).
+
+FIB ≡ (λn.(nH(λt.t01))T)
+Bei eingabe einer Zahl n, führt FIB H n mal aus und startet mit dem Tupel (0,1), am Ende gibt es das erste Element des Tupel zurück.
