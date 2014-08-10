@@ -1,0 +1,66 @@
+```haskell
+powset [] = [[]]
+powset (x:xs) = powset2 ++ [x:ys | ys <- powset2]
+                where powset2 = powset xs
+
+length [] = 0
+length (x:xs) = 1 + length xs
+
+(++) [] ys =ys
+(++) (x:xs) ys =x:(xs++ys)
+```
+
+# HE (Hilfseigenschaft):
+fA z  =>  length xs = length [z | x <- xs]
+
+
+# LE (Lemma):
+length (xs ++ ys) = length xs + length ys
+
+# Beweis für LE:
+IA:
+xs = []
+length ([] ++ ys) = length ys = 0 + length ys = length [] + length ys
+
+IV:
+length (xs ++ ys) = length xs + length ys
+
+IS:
+length (x:xs ++ ys) = length (x:(xs ++ ys)) = 1 + length (xs ++ ys)
+= 1 + length xs + length ys = length x:xs + length ys
+
+
+# Beweis für length (powset xs) = 2^(length xs):
+
+IA:
+length (powset [])
+= length [[]]
+= 1+(length [])
+= 1+0
+= 1
+
+2^(length [])
+= 2^0
+= 1
+
+=> length (powset []) = 2^(length [])
+
+IV:
+length (powset xs) = 2^(length xs)
+
+IS:
+2^(length x:xs)
+= 2^(1+(length xs))
+= 2*2^(length xs)
+(IV)= 2*(length (powset xs))
+
+length (powset x:xs)
+= length ( (powset xs) ++ [x:ys | ys <- (powset xs)] )
+(LE)= length (powset xs) + length [x:ys | ys <- (powset xs)]
+(HE)= length (powset xs) + length (powset xs)
+= 2*length (powset xs)
+
+=> length (powset x:xs) = 2^(length x:xs)
+
+Aus vollständiger Induktion => length (powset xs) = 2^(length xs)
+# QED

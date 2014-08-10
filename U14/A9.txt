@@ -1,0 +1,48 @@
+```haskell
+maxSurfs 0 = 1
+maxSurfs n = n + (maxSurfs (n-1))
+
+maxSurfs' n = aux 0 n
+              where
+                aux acc 0 = acc+1
+                aux acc n = aux (acc+n) (n-1)
+```
+
+#HE (Hilfseigenschat):
+n+1+(aux 0 n) = aux n n
+
+IA:
+0+1+(aux 0 0)
+= 1+0
+= 1
+
+aux 0 0
+=
+
+
+IA:
+maxSurfs 0
+= 1
+
+maxSurfs' 0
+= aux 0 0
+= 0+1
+=1
+
+=> maxSurfs' 0 = maxSurfs 0
+
+
+IV:
+maxSurfs' n = maxSurfs n
+
+IS:
+maxSurfs (n+1)
+= (n+1)+(maxSurfs (n+1-1))
+= n+1+(maxSurfs n)
+(IV)= n+1+(maxSurfs' n)
+= n+1+aux 0 n)
+
+maxSurfs' (n+1)
+= aux 0 (n+1)
+= aux (0+n) (n+1-1)
+= aux n n

@@ -1,7 +1,8 @@
+import Data.Function
+
 list1 = iterate (\b -> if b then False else True) True
 list2 = iterate (\i -> (-1)*(i*2)) 2
-list3 = map prodTupl (iterate (\p -> (snd p, 1+snd p) ) (1,2))
-        where prodTupl (x,y) = x*y
+list3 = fix(\f ((x,y):xs) -> (x*y):(f xs) ) (iterate (\p -> (snd p, 1+snd p) ) (1,2))
 
 
 main = do
