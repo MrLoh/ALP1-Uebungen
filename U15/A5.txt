@@ -1,0 +1,55 @@
+```haskell
+data Tree a = Nil | Node a (Tree a) (Tree a) | Leaf a
+
+sumTree :: (Num a) => Tree a -> a
+sumTree Nil          = 0
+sumTree (Leaf x)     = x
+sumTree (Node x l r) = x + (sumTree l) + (sumTree r)
+
+tree2list :: (Num a) => Tree a -> [a]
+tree2list Nil          = []
+tree2list (Leaf x)     = [x]
+tree2list (Node x l r) = (tree2list l) ++ [x] ++ (tree2list r)
+
+sum :: (Num a) => [a] -> a
+sum []    = 0
+sum(x:xs) = x + sum xs
+```
+
+# sum.tree2list t = sumTree t
+
+##IA1: t = Nil
+   sum.tree2list Nil = sumTree Nil
+<=> sum (tree2list Nil) = sumTree Nil
+<=> sum [] = sumTree Nil
+<=> 0 = sumTree Nil
+<=> 0 = 0
+
+
+##IA2: t = (Leaf x)
+   sum.tree2list (Leaf x) = sumTree (Leaf x)
+<=> sum (tree2list (Leaf x)) = sumTree (Leaf x)
+<=> sum [x] = sumTree (Leaf x)
+<=> x + sum [] = sumTree (Leaf x)
+<=> x + 0 = sumTree (Leaf x)
+<=> x = x
+
+
+##IV:
+für beliebige aber feste Bäume t1 und t2 gilt jeweils
+sum.tree2list t1 = sumTree t1
+sum.tree2list t2 = sumTree t2
+
+
+##IS: t = (Node x t1 t2)
+   sum.tree2list (Node x t1 t2) = sumTree (Node x t1 t2)
+<=> sum (tree2list (Node x t1 t2)) = sumTree (Node x t1 t2)
+<=> sum ((tree2list t1) ++ [x] ++ (tree2list t2)) = sumTree (Node x t1 t2)
+<=> sum ((tree2list t1) ++ [x] ++ (tree2list t2)) = sumTree (Node x t1 t2)
+<=> sum (tree2list t1) + sum ([x] ++ (tree2list t2)) = sumTree (Node x t1 t2)
+<=> sum (tree2list t1) + sum [x] + sum (tree2list t2) = sumTree (Node x t1 t2)
+<=> (sumTree t1) + sum [x] + sum (tree2list t2) = sumTree (Node x t1 t2)
+<=> (sumTree t1) + x + (sum []) + sum (tree2list t2) = sumTree (Node x t1 t2)
+<=> (sumTree t1) + x + 0 + (sumTree t2) = sumTree (Node x t1 t2)
+<=> (sumTree t1) + x + (sumTree t2) = sumTree (Node x t1 t2)
+<=> x + (sumTree t1) + (sumTree t2) = x + (sumTree t1) + (sumTree t2)

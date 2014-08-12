@@ -1,0 +1,60 @@
+```haskell
+data Nat = Zero | S Nat
+
+add :: Nat -> Nat -> Nat
+add a Zero  = a
+add a (S b) = add (S a) b
+
+add' :: Nat -> Nat -> Nat
+add' a Zero  = a
+add' a (S b) = S (add' a b)
+```
+
+# add n m == add' n m
+
+##IA: m = Zero
+add m Zero
+== m
+
+add' m Zero
+== m
+
+
+##IV: n = k
+add m k == add' m k
+
+
+##IS: n = S k
+add m (S k)
+== add (S m) k
+== add' (S m) k
+
+add' m (S k)
+== S (add' m k)
+== add' (S m) k
+
+
+
+
+# S (add' m n) == add' (S m) n
+
+#IA: n = Zero
+S (add' m Zero)
+== S m
+
+add' (S m) Zero
+== S m
+
+
+##IV: n = k
+S (add' m k) == add' (S m) k
+
+
+##IS: n = S k
+S (add' m (S k))
+== S (S (add' m k))
+
+add' (S m) (S k)
+== S add' (S m) k
+== S (S (add' m k))
+

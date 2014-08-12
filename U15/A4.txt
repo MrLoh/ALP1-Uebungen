@@ -1,0 +1,29 @@
+```
+data Tree a = Leaf a | Node (Tree a) (Tree a)
+
+sumLeaves :: Tree a -> Integer
+sumLeaves (Leaf x)       = 1
+sumLeaves (Node leT riT) = sumLeaves leT + sumLeaves riT
+
+sumNodes :: Tree a -> Integer
+sumNodes (Leaf x)       = 0
+sumNodes (Node leT riT) = 1 + sumNodes leT + sumNodes riT
+```
+
+# sumNodes t + 1 = sumLeafs t
+
+##IA: t = (Leaf x)
+   sumNodes (Leaf x) + 1 = sumLeafs (Leaf x)
+<=> 0 + 1 = sumLeafs (Leaf x)
+<=> 0 + 1 = 1
+<=> 1 = 1
+
+##IV:
+für beligbige aber feste Bäume lt und rt gilt sumNodes rt + 1= sumLeafs rt und sumNodes lt + 1 = sumLeafs lt
+
+##IS: t = (Node lt rt)
+   sumNodes (Node lt rt) + 1 = sumLeafs (Node lt rt)
+<=> (sumNodes lt) + (sumNodes rt) + 1 + 1 = sumLeafs (Node lt rt)
+<=> (sumLeafs lt) + (sumNodes rt) + 1 = sumLeafs (Node lt rt)
+<=> (sumLeafs lt) + (sumLeafs rt) = sumLeafs (Node lt rt)
+<=> (sumLeafs lt) + (sumLeafs rt) = (sumLeafs lt) + (sumLeafs rt)

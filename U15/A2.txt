@@ -1,0 +1,96 @@
+```haskell
+(++) []     ys = ys
+(++) (x:xs) ys = x:(xs++ys)
+
+reverse []     = []
+reverse (x:xs) = reverse xs ++ [x]
+
+elem x []     = False
+elem x (y:ys) | x==y      = True
+              | otherwise = elem x ys
+
+map f []     = []
+map f (x:xs) = (f x):(map f xs)
+
+(.) f g x = f (g x)
+
+filter p []     = []
+filter p (x:xs) | p x       = x:(filter p xs)
+                | otherwise = filter p xs
+
+```
+
+# elem a (xs++ys) == elem a xs || elem a ys
+
+##IA: xs = []
+elem a ([]++ys)
+== elem a  ys
+
+elem a [] || elem a ys
+== False || elem a ys
+== elem a ys
+
+
+##IV: xs = zs
+elem a (zs++ys) == elem a zs || elem a ys
+
+
+##IS: xs = (z:zs)
+elem a ((z:zs)++ys)
+== elem a (z:(zs++ys))
+**Fall 1: a==z**
+  == True
+**Fall 2: a/=z**
+  == elem a (zs++ys)
+  == elem a zs || elem a ys
+
+elem a (z:zs) || elem a ys
+**Fall 1: a==z**
+  == True || elem a ys
+  == True
+**Fall 2: a/=z**
+  == elem a zs || elem a ys
+
+
+
+
+# (filter p.map f) xs == ((map f).filter (p.f)) xs
+
+##IA: xs = []
+(filter p.map f) []
+== filter p (map f [])
+== filter p []
+== []
+
+((map f).filter (p.f)) []
+== map f (filter (p.f) [])
+== map f []
+== []
+
+
+##IV: xs = zs
+(filter p.map f) zs == ((map f).filter (p.f)) zs
+
+
+##IS: xs = (z:zs)
+(filter p.map f) (z:zs)
+== filter p (map f (z:zs))
+== filter p ((f z):(map f zs))
+**Fall 1: p (f z) == True**
+  == (f z):(filter p (map f zs))
+  == (f z):((filter p.map f) zs)
+  == (f z):((map f.filter (p.f)) zs)
+  == (f z):(map f (filter (p.f) zs))
+**Fall 2: p (f z) == False**
+  == filter p (map f zs)
+  == (filter p.map f) zs
+  == ((map f).filter (p.f)) zs
+  == map f (filter (p.f) zs)
+
+((map f).filter (p.f)) (z:zs)
+== map f (filter (p.f) (z:zs))
+**Fall 1: (p.f) z == p (f z) == True**
+  == map f (z:(filter (p.f) zs))
+  == (f z):(map f (filter (p.f) zs))
+**Fall 1: (p.f) z == p (f z) == False**
+  == map f (filter (p.f) zs)

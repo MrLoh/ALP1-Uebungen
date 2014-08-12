@@ -1,0 +1,33 @@
+```haskell
+zip :: ([a], [b]) -> [(a, b)]
+zip ([ ]   , _     ) = [ ]
+zip (_     , [ ]   ) = [ ]
+zip ((x:xs), (y:ys)) = (x, y) : zip (xs, ys)
+
+unzip :: [(a, b)] -> ([a], [b])
+unzip [ ]        = ([ ], [ ])
+unzip ((x,y):zs) = (x:xs, y:ys)
+                   where
+                   (xs, ys) = unzip zs
+```
+
+# fA xs::[(a,b)] => zip (unzip xs) = xs
+
+##IA: xs = []
+   zip (unzip []) = []
+<=> zip ([],[]) = []
+<=> [] = []
+
+
+##IV: xs = ys
+xs mit fester länge, aber beliebig:
+zip (unzip ys) = ys
+
+
+##IS: xs = ((c,d):ys)
+   zip (unzip ((c,d):ys)) = (c,d):ys
+<=> zip (c:(fst (unzip ys)),d:(snd (unzip ys))) = (c,d):ys
+<=> zip (c:(fst (unzip ys)),d:(snd (unzip ys))) = (c,d):ys
+<=> (c,d):(zip ( (fst (unzip ys)) , (snd (unzip ys)) ) ) = (c,d):ys
+<=> (c,d):(zip (unzip ys)) = (c,d):ys
+<=> (c,d):ys = (c,d):ys
