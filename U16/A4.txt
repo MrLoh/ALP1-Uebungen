@@ -1,0 +1,11 @@
+*f(x,y,z) = x + ((x+z)(z+y+2)) / 2*
+f = add•(π13 x half•(mult•(add•(π31 x π33)) x (add•(π33 x add2•π23))))
+
+*p(n) = 2^n - 1*
+p = sub•(exp•(π11 x C21) x C11)
+
+dist = add•(sub•(π12 x π22) sub•(π22 x π12))
+
+*f(n) = if n==0 then 1 else f(n-1)+n*
+f(0)    = C11
+f(S(n)) = add•(π12 x π22) (f(n),n)

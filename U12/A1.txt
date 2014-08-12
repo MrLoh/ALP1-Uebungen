@@ -1,0 +1,13 @@
+Z3 ≡ (λz.z 0 3)
+Z3 ≡ (λz.z(λsz.s)(λsz.s(s(s(z)))))
+(λz.znm) stellt Zahl n-m dar
+
+ZADD ≡ λabz.z (ADD (aT)(bT)) (ADD (aF)(bF))
+*(aT-aF)+(bT-bF) = (aT+bT)-(aF+bF)*
+
+ZSUB ≡ λabz.z (ADD(aT)(bF)) (ADD(aF)(bT))
+*(aT-aF)-(bT-bF) = (aT+bF)-(aF+bT)*
+
+ZMULT ≡ λabz.z (ADD (MULT(aT)(bT)) (MULT(aF)(bF)))
+               (ADD (MULT(aT)(bF)) (MULT(aF)(bT)))
+*(aT-aF)(bT-bF) = (aT bT + aF bF) - (aF bT + aT bF)*

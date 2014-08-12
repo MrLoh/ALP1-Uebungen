@@ -1,0 +1,2 @@
+GEQ ≡ λab.Z((STD(ZUSB a b))T)
+*a≤b «» (a-b)≤0 «» (a-b) ist negative Zahl «» (a-b)T == 0*

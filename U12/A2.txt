@@ -1,0 +1,2 @@
+STD ≡ λnz.z (SUB(nF)(nT)) (SUB(nT)(nF))
+*(aT-aF) = max((aT-aF),0) - max((aF-aT),0)*

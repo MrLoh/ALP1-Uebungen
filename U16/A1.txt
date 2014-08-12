@@ -1,0 +1,9 @@
+## Potenz
+exp(x,y) = expH•(π22 x π12) (x,y)
+
+expH(0,x)    = C10
+expH(S(n),x) = mult•(π13 x π33) (expH(n,x),n,x)
+
+
+## Maximum
+max = add•(π12 x sub•(π12 x π22))

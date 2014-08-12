@@ -1,0 +1,3 @@
+f(x,y,z) = g(x) * h(z,x) + k(y)
+
+f = add•(mul•(g•π13 x h•(π33 x π13)) x k•π23)
