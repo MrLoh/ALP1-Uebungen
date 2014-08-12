@@ -1,0 +1,36 @@
+L ≡ λz.zTFF
+L: empty list = nil
+
+list: λl.lFht
+h: head
+t: tail (another list, eventually L)
+
+EMPTY ≡ λl.l(λabc.a)
+HEAD ≡ λl.l(λabc.b)
+TAIL ≡ λl.l(λabc.c)
+
+PUSH ≡ λhtl.lFht
+
+ELEM ≡ λlx.YR lx
+       R ≡ λrlx.
+            (EMPTY l) (
+                F
+            )(
+                (EQ x (HEAD l)) (
+                    T
+                )(
+                    r (TAIL l) x
+                )
+            )
+
+DEL ≡ λlx.YR lx
+      R ≡ λrlx.
+            (EMPTY l)
+            (
+                L
+            )
+            (
+                (EQ (HEAD l) x)
+                    (TAIL l)
+                    (PUSH (HEAD l) (r (TAIL l) x))
+            )

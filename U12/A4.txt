@@ -1,1 +1,18 @@
-LENCOMP ≡
+LEN ≡ λl.YR l
+      R ≡ (λrl.
+            (EMPTY l) (
+                0
+            )(
+                S(r(TAIL l)))
+            )
+
+LENCOMP ≡ λab.
+            (GEQ (LEN a) (LEN b)) (
+                (LEQ (LEN a) (LEN b)) (
+                    λz.00
+                ) (
+                    λz.10
+                )
+            ) (
+                λz.01
+            )
