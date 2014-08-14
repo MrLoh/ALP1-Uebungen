@@ -1,0 +1,37 @@
+# Listen: (λx.x eht)
+e: empty (bool)
+h: head
+t: tail
+
+L    ≡ (λx.xTFF)
+NIL  ≡ (λx.x(λlht.l))
+HEAD ≡ (λx.xT)
+TAIL ≡ (λx.xF)
+PUT  ≡ (λhtx.xF ht)
+
+LEN  ≡ Y
+        (λrl.
+            (NIL l) (
+                    0
+                ) (
+                    S (r (TAIL l) )
+                )
+        )
+
+REV  ≡ Y
+        (λrl.
+            (NIL l) (
+                L
+            ) (
+                PUT (HEAD l) (r (TAIL l) )
+            )
+        )
+
+CONC ≡ Y
+        (λrab.
+            (NIL a) (
+                b
+            ) (
+                PUT (HEAD a) (r (TAIL a) b)
+            )
+        )

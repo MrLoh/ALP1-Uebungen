@@ -1,69 +1,8 @@
-Reduktion:
-   (λs.λx.s(s(x))) a b ≡ (S(S(KS)(S(KK)I))(S(S(KS)(S(KK)I))(KI))) a b
-<=> a(a(b)) ≡ (S (S(KS)(S(KK)I)) (S(S(KS)(S(KK)I))(KI)) ) a b
-<=> a(a(b)) ≡ ((S (KS) (S(KK)I) a) ((S(S(KS)(S(KK)I))(KI)) a) ) b
-<=> a(a(b)) ≡ ( ((KSa) ((S(KK)I)a)) ((S(S(KS)(S(KK)I))(KI)) a) ) b
-<=> a(a(b)) ≡ ( (S ((S(KK)I)a)) ((S(S(KS)(S(KK)I))(KI)) a) ) b
-<=> a(a(b)) ≡ ( (S (Ka)) (S (S(KS)K) (KI) a) ) b
-<=> a(a(b)) ≡ ( (S (Ka)) ( ((S(KS)K) a) (KIa)) ) b
-<=> a(a(b)) ≡ ( (S (Ka)) ( (S (KS) K a) I) ) b
-<=> a(a(b)) ≡ ( (S (Ka)) ( ((KSa) (Ka)) I) ) b
-<=> a(a(b)) ≡ S (Ka) (S (Ka) I) b
-<=> a(a(b)) ≡ (Kab) ((S (Ka) I) b)
-<=> a(a(b)) ≡ a (S (Ka) I b)
-<=> a(a(b)) ≡ a ((Kab) (Ib))
-<=> a(a(b)) ≡ a (a (Ib))
-<=> a(a(b)) ≡ a(a(b))
-
-
-Transformation:
-(λs.λx.s(s(x))) a b
-<=>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(0) λx.E     => [Elim x] E
-(1) λx.x     => [Elim x]       => I
-(2) λx.y     => [Elim x] y     => K y
-(3) λx.E1 E2 => [Elim x] E1 E2 => S ([Elim x] E1) ([Elim x] E2)
-Achtung Linksassoziativ
-
-Hilfssatz:
-S(KK)I a <=> ((KK) a) (I a) <=> (KK a) a <=> K a
-also: SKKI <=> K
-
-
-Beispiel 1:
-```
-λx.abc => [Elim x] abc => S ([Elim x] ab) ([Elim x]c)
-=> S (S ([Elim x] a) ([Elim x] b) ) ([Elim x] c)
-=> S (S (K a) (K b)) (K c)
-```
-
-Biespiel 2:
-```
-λx.λy.x(y) => [Elim x] λy.x(y) => [Elim x] ([Elim y] x(y))
-=> [Elim x] (S ([Elim y] x) ([Elim y] (y)))
-=> [Elim x] S (K x) I => S ([Elim x] S (K x)) ([Elim x] I)
-=> S (S ([Elim x] S) ([Elim x] (K x))) ([Elim x] I)
-=> S (S ([Elim x] S) (S ([Elim x] K) ([Elim x] x))) ([Elim x] I)
-=> S (S (KS) (S(KK)I)) (K I)
-=> S (S(KS)K) (KI)
-
-S (S(KS)K) (KI) a <=> ((S(KS)K) a) (KIa) <=> (S (KS) K a) (I)
-<=> ((KSa) (Ka)) I <=> (S (Ka)) I <=> (S (Ka)) I
-
-((S (Ka)) I) b <=> S (Ka) I b <=> (Kab) (Ib) <=> a(Ib) <=> ab <=> I ab
-```
+   λx.y(yxy)
+<=> [elim x] y(yxy)
+<=> S ([elim x] y) ([elim x] yxy)
+<=> S (Ky) ([elim x] yxy)
+<=> S (Ky) (S ([elim x] yx) ([elim x] y))
+<=> S (Ky) (S ([elim x] yx) (Ky))
+<=> S (Ky) (S (S ([elim x] y) ([elim x] x)) (Ky))
+<=> S (Ky) (S (S (Ky) I) (Ky))
