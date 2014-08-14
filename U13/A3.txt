@@ -1,0 +1,17 @@
+(1) T[x]          => x
+(2) T[(E1 E2)]    => (T[E1] T[E2])
+(3) T[λx.x]       => I
+(4) T[λx.E]       => (K T[E])                fa x not-in FV(E)
+(5) T[λx.E x]     => (T[E])                  fa x not-in FV(E)
+(5) T[λx.(E1 E2)] => (S T[λx.E1] T[λx.E2])   fa x in FV(E1) or x in FV(E2)
+(6) T[λx.λy.E]    => T[λx.T[λy.E]]           fA x in FV(E)
+
+*FV: Freie Variablen*
+
+
+   T[λs.λx.s(s(x))]
+4> (K T[λx.s(s(x))])
+4> (K(K T[s(s(x))]))
+
+
+≡ S(S(KS)(S(KK)I))(S(S(KS)(S(KK)I))(KI))

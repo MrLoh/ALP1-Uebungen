@@ -1,0 +1,44 @@
+<!-- 1 -->
+Referentielle Transparenz bedeutet, dass der Ausgabewert einer Funktion nur von ihren Eigabewerten abhängt und Funktionen keine Nebeneffekte haben.
+
+<!-- 2 -->
+Bei Programmiersprachen mit einem statischen Typsystem wird der Typ jeder Variable eindeutig bei der Kompilierung festgelegt.
+
+<!-- 3 -->
+f a b = a
+f ist nach a strikt aber nicht nach b strikt, da f ⊥ b = ⊥, wobei ⊥ bottom ist.
+
+<!-- 4 -->
+foldr :: ((a->b->a),a,[b]) -> a
+foldr (f,z,[])     = z
+foldr (f,z,(x:xs)) = f x (foldr (f,z,xs))
+
+<!-- 5 -->
+filter :: ((a->Bool),[a]) -> [a]
+filter (p,[])     = []
+filter (p,(x:xs)) | p x       = x:filter (p,xs)
+                  | otherwise = filter (p,xs)
+
+<!-- 6 -->
+f :: (x -> Bool) -> x -> (x -> Bool) -> x
+f a b c | a b       = a b
+        | otherwise = a c
+
+Da a Prädikat
+=> a :: x -> Bool
+=> b :: x
+Da Ausgabe von Typ Bool sein muss
+=> c :: x -> Bool
+
+<!-- 7 -->
+f :: (Num x) => (x -> [x]) -> (x -> Bool) -> x -> [x]
+f a b c | b c       = [c+2]
+        | otherwise = a c
+
+Da b Prädikat
+=> b :: x -> Bool
+=> c :: x
+Da c (+) Operation hat
+=> c :: (Num x) => x
+Da Ausgabe vom Typ [x]
+=> a :: x -> [x]

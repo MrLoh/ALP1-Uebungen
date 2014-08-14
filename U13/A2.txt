@@ -1,0 +1,5 @@
+S S (SI (K (KI) )) (KK (S (KK) I)) (KI)
+S (KK (S (KK) I)) (S (SI (K (KI) ))) (KI)
+(KK (S (KK) I)) (KI) ((S (SI (K (KI) ))) (KI))
+K (KI) ((S (SI (K (KI) ))) (KI))
+KI
