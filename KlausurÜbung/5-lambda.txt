@@ -1,0 +1,113 @@
+<!-- 1 -->
+   λx.((λx.λa.(ax(xx)yx))(λa.xa))
+<=> λx.((λc.λa.(ac(cc)yc))(λa.xa))
+<=> λx.((λc.λa.(ac(cc)yc))(λb.xb))
+
+Freie Variablen: y
+Gebundene Variablen: x,c,a,b
+
+   λx.(λca.(ac(cc)yc)) (λb.xb)
+<=> λxa.a (λb.xb) ((λd.xd)(λe.xe)) y (λf.xf)
+<=> λxa.a x((λd.xd)(λe.xe)) y (λf.xf)
+<=> λxa.a x(x(λe.xe)) y (λf.xf)
+<=> λxa.a x(x(λe.xe)) y (λf.xf)
+
+
+<!-- 2 -->
+   (λxy.xy(λxy.y)) (λxy.x) (λxy.y)
+<=> (λxy.xy(λab.b)) (λcd.c) (λef.f)
+<=> (λy.(λcd.c)y(λab.b)) (λef.f)
+<=> (λcd.c) (λef.f) (λab.b)
+<=> (λd.(λef.f)) (λab.b)
+<=> λef.f
+<=> F
+
+
+<!-- 3 -->
+Y ≡ λf.(λx.f(xx)) (λx.f(xx))
+
+λx.x eht
+TNIL ≡ λl.l(λeht.e)
+TAIL ≡ λl.l(λeht.t)
+
+LEN ≡ Y (λrl.
+            (TNIL l) (
+                λsz.z
+            ) (
+                S (r (TAIL l) )
+            )
+        )
+
+
+<!-- 4 -->
+S ≡ λwyx.y(wyx)
+
+NOT ≡ λb.bFT
+Z ≡ λx.xF NOT F
+
+SUMN ≡ Y (λrn
+            (Zn) (
+                λsz.z
+            ) (
+                n S (r (Pn))
+            )
+        )
+
+
+<!-- 5 -->
+FIB ≡ Y (λrabn.
+            (Zn) (
+                b
+            ) (
+                r (aSb) a (Pn)
+            )
+        ) 11
+
+
+<!-- 6 -->
+   S (KK) I a b ≡ K a b
+<=> (KKa) (Ia) b ≡ a
+<=> K (Ia) b ≡ a
+<=> (Ia) ≡ a
+<=> a ≡ a
+
+also: S( S (KS) (S(KK)I) ) (S(KK)I)
+  <=> S( S (KS) K ) K
+
+   (λx.λy.xx) a b ≡ (S( S (KS) K ) K) a b
+<=> aa ≡ S (S(KS)K) K a b
+<=> aa ≡ S (KS) K a (Ka) b
+<=> aa ≡ (KSa) (Ka) (Ka) b
+<=> aa ≡ S (Ka) (Ka) b
+<=> aa ≡ (Kab) (Kab)
+<=> aa ≡ aa
+
+
+Alternative Lösung:
+   λx.λy.xx ≡
+<=> [elim x] λy.xx
+<=> [elim x] S ([elim y] x) ([elim y] x)
+<=> [elim x] S (Kx) (Kx)
+<=> S ([elim x] S (Kx)) ([elim x] Kx)
+<=> S (S ([elim x] S) ([elim x] Kx)) ([elim x] Kx)
+<=> S (S (KS) (S([elim x] K) ([elim x] x))) (S([elim x] K) ([elim x] x))
+<=> S (S (KS) (S(KK)I)) (S(KK)I)
+
+
+<!-- 7 -->
+   λx.y(yx) a ≡ S (Ky) (S(Ky)I) a
+<=> y(ya) ≡ S (Ky) (S(Ky)I) a
+<=> y(ya) ≡ (Kya) (S (Ky) I a)
+<=> y(ya) ≡ y (S (Ky) I a)
+<=> y(ya) ≡ y ((Kya) (Ia) )
+<=> y(ya) ≡ y(ya)
+
+
+Alternative Lösung:
+   λx.y(yx)
+<=> S ([elim x] y) ([elim x] yx)
+<=> S (Ky) ([elim x] yx)
+<=> S (Ky) (S ([elim x] y) ([elim x] x))
+<=> S (Ky) (S (Ky) I)
+
+

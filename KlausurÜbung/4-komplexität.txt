@@ -1,0 +1,33 @@
+```
+data Menge a = Menge [a] deriving(Show, Eq)
+
+insertSet x (Menge ys) | inSet x (Menge ys) = Menge ys
+                       | otherwise          = Menge (x:ys)
+
+union (Menge []) m     = m
+union (Menge (x:xs)) m = insertSet x (union (Menge xs) m)
+```
+
+inSet: O(n)
+
+
+
+
+## insertSet
+- zähle rekursive Aufrufe
+- n = Länge der Liste der Menge
+- worst case: element ist nicht bereits in Menge
+- insertSet ruft immer sunächst inSet auf
+- danach wird im worstcase einmal (:) aufgerufen
+- (:) in O(1)
+- inSet in O(n)
+- also folgt insertSet in O(n+1) = O(n)
+
+## union
+- zähle rekursive Aufrufe
+- n = Länge der Liste der ersten Menge
+- worst case: beliebig
+- union geht alle elemente der ersten Liste durch
+- dabei wird jedesmal insertSet aufgerufen
+- insertSet in O(n)
+- also folgt union in O(n*n) = O(n^2)

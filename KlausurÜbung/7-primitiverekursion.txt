@@ -1,0 +1,57 @@
+# 1
+```
+add 0 y = y
+add x y = 1 + (add (x-1) y)
+
+mult 0 y = 0
+mult x y = add x (mult (x-1) y)
+
+exp x 0 = 1
+exp x y = mult x (exp x (y-1))
+```
+
+add(0,m) = π11 (m)
+add(S(n),m) = S•π13 (add(n,m),n,m)
+
+mult(0,m) = Z (m)
+mult(S(n),n) = add•(π13 x π33) (mult(n,m),n,m)
+
+exp = expH•(π22 x π12)
+expH(0,m) = C11 (m)
+expH(S(n),m) = mult•(π33 x π13) (expH(n,m),n,m)
+
+
+# 2
+```
+fak 0 = 1
+fak x = x*(fak (x-1))
+```
+
+fak(0) = C10
+fak(S(n)) = mult•(π22 x π12) (fak(n),n)
+
+
+# 3
+```
+not 0 = 1
+not x = 0
+
+odd 0 = 0
+odd x = not (odd (x-1))
+
+half 0 = 0
+half x = (half (x-1)) + (odd x)
+```
+
+not(0) = C10
+not(S(n)) = Z (not(n),n)
+
+odd(0) = Z
+odd(S(n)) = not•π12 (odd(n),n)
+
+half(0) = Z
+half(S(n)) = add•(π12 x odd•π22) (half(n),n)
+
+
+
+

@@ -1,3 +1,5 @@
+import Data.Function
+
 -- 1
 getUntil :: (a -> Bool) -> [a] -> [a]
 getUntil p []     = []
@@ -28,6 +30,8 @@ fibFL n = fst (foldl (\(a,b) x -> (a+b,a)) (0,1) [0..n])
 fibFR :: Integer -> Integer
 fibFR n = fst (foldr (\x (a,b) -> (a+b,a)) (0,1) [0..n])
 
+fibLA :: Integer -> Integer
+fibLA = fix (\r a b n -> if n==0 then b else r (a+b) a (n-1)) 1 1
 
 -- 3b: Fakultät
 fakLR :: Integer -> Integer
@@ -83,6 +87,7 @@ main = do
   print( map fibER [1..10] )
   print( map fibFL [1..10] )
   print( map fibFR [1..10] )
+  print( map fibLA [1..10] )
   putStrLn ""
   print( map fakLR [1..5] )
   print( map fakER [1..5] )
